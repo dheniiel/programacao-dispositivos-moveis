@@ -1,112 +1,127 @@
-# Programação para Dispositivos Móveis — 2026/2
+# Programação para Dispositivos Móveis
 
-Repositório de materiais e códigos da disciplina **Programação para
-Dispositivos Móveis**, do 6º período do **Bacharelado em Sistemas de
-Informação** do **Instituto Federal Goiano — Campus Ceres**.
+Exercícios e projetos da disciplina **Programação para Dispositivos Móveis** (6º período de Sistemas de Informação, IF Goiano, Campus Ceres), desenvolvidos em **Dart** e **Flutter**.
 
-> Prof. Dr. Paulo César Ferreira Melo · `paulo.melo1@ifgoiano.edu.br`
+Os exemplos usam o contexto agrícola da região: talhões, culturas (soja, milho, sorgo), cotação da saca e alqueire goiano. Eles fazem parte do **Caderno de Campo do Vale**, um app de registro de atividades agrícolas construído ao longo do semestre.
 
-Ao longo do semestre construímos, juntos, um aplicativo real: o
-**Caderno de Campo do Vale** — um registro de atividades agrícolas pensado
-para produtores e cooperativas da região de Ceres e do Vale de São
-Patrício. Cada aula acrescenta uma peça a esse app, em vez de exemplos
-soltos e descartáveis.
+## Tecnologias
 
----
+- Dart 3
+- Flutter (Material 3)
+- VS Code e DartPad
 
-## Como este repositório se organiza
+## Estrutura
 
-Uma pasta por aula. Cada uma tem seu próprio `README.md` com o roteiro, as
-atividades e as instruções para rodar.
+```
+ProgramacaoDispositivosMoveis/
+├── blocoA/                            Variáveis, tipos, const/final e funções
+├── blocoB/                            Null safety
+├── blocoC/                            Strings
+├── blocoD/                            Condicionais e laços
+├── aula-03-widgets-layout/            Widgets de layout (exercicios/ + projeto-inicial/)
+├── aula-04-calculadora-guiada/        App: Calculadora de Receita da Lavoura
+└── funcionalidade_cardeno_de_campo/   App: Comparador de Propostas de Venda
+```
 
-| Pasta | Aula | Conteúdo |
-|---|---|---|
-| `ambiente/` | — | Tutoriais de instalação (Windows, macOS, Linux) |
-| `aula-01-dart-fundamentos/` | 01 | Dart essencial: tipos, null safety, coleções, funções |
-| `aula-02-dart-atividades/` | 02 | Oficina de Dart em ciclos (preveja, desafio, refatoração, caça-bug) |
-| `aula-03-widgets-layout/` | 03 | **Widgets de layout: primeira tela no VS Code** |
+## Exercícios de Dart
 
-> As aulas seguintes (estado e formulários, navegação, dados e persistência)
-> serão adicionadas como novas pastas ao longo do semestre.
+### Bloco A: variáveis e funções
 
----
+| Arquivo | O que faz |
+|---|---|
+| `exercicioUm` | Declara os dados de um produtor com tipos explícitos e os exibe com interpolação. |
+| `exercicioDois` | Mesmo exercício com `var`, mostrando o tipo inferido com `runtimeType`. |
+| `exercicioTres` | Compara `const` (tempo de compilação) e `final` (tempo de execução). |
+| `exercicioQuarto` | Converte uma área entre alqueire goiano e hectares (fator 4,84). |
+| `exercicioCinco` | Encontra a maior, a menor e a média de três cotações. |
 
-## Do DartPad ao VS Code
+### Bloco B: null safety
 
-As duas primeiras aulas são de **linguagem Dart** e rodam inteiras no
-**[dartpad.dev](https://dartpad.dev)**, sem instalar nada. A partir da
-**aula 03**, passamos a construir telas de verdade e o trabalho migra para
-o **VS Code com o Flutter instalado** — é quando o ambiente local deixa de
-ser opcional.
+| Arquivo | O que faz |
+|---|---|
+| `exercicioUm` | Usa `??` para exibir um valor padrão quando o telefone é nulo. |
+| `exercicioDois` | Usa `?.` para acessar uma propriedade de uma variável que pode ser nula. |
+| `exercicioTres` | Classifica a chuva (sem registro, seca ou normal) a partir de um `double?`. |
+| `exercicioQuatro` | Calcula sacas por hectare e retorna `null` quando a área é inválida. |
+| `exercicioCinco` | Mostra o erro gerado ao usar `!` em um valor nulo. |
 
-Se você ainda não configurou o ambiente, comece pelos tutoriais na pasta
-`ambiente/`, escolhendo o do seu sistema operacional. Confirme com:
+### Bloco C: strings
+
+| Arquivo | O que faz |
+|---|---|
+| `exercicioUm` | Concatena partes de uma frase. |
+| `exercicioDois` | Formata um valor em reais. |
+| `exercicioTres` | Exibe um endereço em várias linhas com `\n`. |
+| `exercicioQuatro` | Converte uma string de culturas em lista com `split`, `trim` e `toUpperCase`. |
+
+### Bloco D: controle de fluxo
+
+| Arquivo | O que faz |
+|---|---|
+| `exercicioUm` | Classifica a produtividade (baixa, média, alta) com `if / else`. |
+| `exercicioDois` | Mesma classificação com `switch` e padrões relacionais. |
+| `exercicioTres` | Gera uma tabela de conversão de 10 a 100 hectares com `for`. |
+| `exercicioQuatro` | Conta em quantos dias um estoque de 5000 unidades se esgota. |
+
+## Aula 03: widgets de layout
+
+Exercícios em ciclos para montar a primeira tela do Caderno de Campo:
+
+| Ciclo | Conteúdo |
+|---|---|
+| 1 | `Column`, `Row`, `Container`, `Padding` e `SizedBox`: cabeçalho da propriedade. |
+| 2 | `Expanded` e `Flexible`: correção de erros de *overflow*. |
+| 3 | `ListView.builder`: lista rolável de talhões. |
+| 4 | Tela de resumo juntando cabeçalho, cards de números e lista de talhões. |
+
+A pasta `exercicios/` tem os arquivos de cada ciclo e as versões resolvidas. O `projeto-inicial/` é o projeto Flutter da tela de resumo.
+
+## Aula 04: Calculadora de Receita da Lavoura
+
+App em que o produtor informa área (ha), produtividade (sacas/ha) e cotação da saca (R$), e recebe a receita bruta estimada:
+
+```
+receita = área × produtividade × cotação
+```
+
+- `StatefulWidget` e `setState` para atualizar a tela
+- `TextEditingController` em cada campo, liberados no `dispose()`
+- Validação de campos vazios, inválidos ou menores ou iguais a zero
+- Aceita vírgula ou ponto como separador decimal
+- Resultado formatado no padrão brasileiro (`R$ 1.250,50`)
+- Botões **Calcular** e **Limpar**
+
+## Funcionalidade: Comparador de Propostas de Venda
+
+Funcionalidade do Caderno de Campo para comparar propostas de compra de sacas:
+
+- Cadastro de propostas com comprador, preço da saca (R$) e prazo de pagamento (dias)
+- Validação em tempo real com `onChanged` e `errorText`
+- Botão **Inserir** habilitado apenas quando o formulário é válido
+- Lista ordenada automaticamente do maior para o menor preço
+- Exclusão de propostas e limpeza do formulário
+- Dados mantidos apenas em memória
+
+## Como executar
+
+**Exercícios de Dart** (blocos A a D):
 
 ```bash
-flutter doctor
+dart run blocoA/exercicioUm.dart
 ```
 
----
+Ou cole o código no [DartPad](https://dartpad.dev).
 
-## Como usar o repositório
-
-Clone uma vez:
+**Projetos Flutter** (pré-requisito: Flutter SDK, verificado com `flutter doctor`):
 
 ```bash
-git clone <url-do-repositorio>
-cd prog-moveis-2026-2
+cd aula-04-calculadora-guiada     # ou funcionalidade_cardeno_de_campo
+flutter pub get
+flutter run
 ```
 
-Cada aula explica, no seu próprio `README.md`, como rodar aquele material.
-Para as aulas com projeto Flutter, o padrão é:
+Para o `aula-03-widgets-layout/projeto-inicial`, rode `flutter create .` antes, pois as pastas nativas não estão versionadas. Os arquivos de `aula-03-widgets-layout/exercicios/` também rodam no DartPad, no modo Flutter.
 
-```bash
-cd aula-03-widgets-layout/projeto-inicial
-flutter create .      # gera as pastas nativas (só na 1ª vez)
-flutter pub get       # baixa as dependências
-flutter run           # roda no dispositivo selecionado
-```
+## Autor
 
-> **Por que rodar `flutter create .`?** Os projetos aqui **não versionam** as
-> pastas nativas (`android/`, `ios/`…) nem a `build/`, porque elas são
-> geradas por máquina e mudam de um computador para outro. O comando as
-> recria localmente. O que o repositório guarda é o essencial: o `lib/`
-> (seu código) e o `pubspec.yaml` (as dependências).
-
----
-
-## Estrutura de uma aula com projeto
-
-As aulas de código seguem sempre o mesmo desenho, para você saber onde
-procurar cada coisa:
-
-```
-aula-XX-nome/
-├── README.md            roteiro e instruções da aula
-├── exercicios/          arquivos .dart soltos (estudo e DartPad)
-├── projeto-inicial/     projeto Flutter no estado zero — onde a aula acontece
-└── projeto-gabarito/    o projeto com a solução pronta (liberado após a aula)
-```
-
-Os **exercícios soltos** servem para estudar e para o plano B no DartPad.
-O **projeto-inicial** é onde você constrói, no VS Code. O **projeto-gabarito**
-é a referência, liberada depois.
-
----
-
-## Convenções
-
-- **Identificador do app:** `br.edu.ifgoiano.ceres.caderno_campo`
-- **Flutter:** canal `stable` (referência: 3.44). **Dart:** 3.12.
-- **Dados de exemplo:** sempre do contexto regional — talhões, culturas
-  (soja, milho, sorgo), cotação da saca, alqueire goiano (4,84 ha).
-- **Cor institucional:** verde IF Goiano (`#1E5631`).
-
----
-
-## Dúvidas e problemas de ambiente
-
-Travou na instalação ou em algum comando? Anote a **etapa** e a **mensagem
-de erro exata** e traga na aula ou pelo Moodle. Resolver um erro de
-configuração é uma competência tão real quanto escrever código — e ninguém
-precisa passar por isso sozinho.
+Dheniel ([@dheniiel](https://github.com/dheniiel))
